@@ -18,8 +18,11 @@ Clone the Repository:
 
 bash
 Copy code
+
+```
 git clone https://github.com/your-username/SwaluKE.git
 cd SwaluKE
+```
 Install Dependencies:
 
 bash
