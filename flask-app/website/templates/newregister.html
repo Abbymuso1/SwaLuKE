@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title%}SwaLuKE-Translate Register{%endblock%}</title>
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+  <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <div class="container">
+      <div class="card login-card">
+        <div class="row no-gutters">
+          <div class="col-md-5">
+            <img src="{{url_for('static', filename='images/login.jpg')}}" alt="register" class="login-card-img">
+          </div>
+          <div class="col-md-7">
+            <div class="card-body">
+              <div class="brand-wrapper">
+                <h2><a style="text-decoration: none; color:#eb5d1e;" href="/">SwaLuKE</a></h2>
+                <!--img src="assets/images/logo.svg" alt="logo" class="logo"-->
+              </div>
+              <p class="login-card-description">Sign up to join the community</p>
+              <form method="POST">
+
+                <div class="form-group">
+                  <label for="email" class="sr-only">Name</label>
+                  <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Enter name">
+                </div>
+                  <div class="form-group">
+                    <label for="email" class="sr-only">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Email address">
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="password" class="sr-only">Password</label>
+                    <input type="password" name="password1" id="password1" class="form-control" placeholder="New Password">
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="password" class="sr-only">Confirm Password</label>
+                    <input type="password" name="password2" id="password2" class="form-control" placeholder="Confirm Password">
+                  </div>
+                  <input name="Signup" id="Signup" class="btn btn-block login-btn mb-4" type="submit" value="Register">
+                </form>
+                <p class="login-card-footer-text">Are you an existing user? <a href="/login" class="text-reset">Login here</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+    </div>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+#templates folder - holds the html files

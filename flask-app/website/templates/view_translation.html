@@ -1,0 +1,27 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translation App</title>
+</head>
+<body>
+    <h1>Translation App</h1>
+
+    <form action="/translate" method="post">
+        <label for="input_text">Input Text:</label>
+        <textarea name="input_text" id="input_text" rows="4" cols="50"></textarea>
+        <br>
+        <input type="submit" value="Translate">
+    </form>
+
+    {% if input_text %}
+        <h3>Input Text:</h3>
+        <p>{{ input_text }}</p>
+
+        <h3>Translated Text:</h3>
+        <p>{{ translated_text }}</p>
+    {% endif %}
+</body>
+</html>

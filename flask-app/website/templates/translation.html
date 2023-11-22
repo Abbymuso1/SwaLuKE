@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block title%}Home{% endblock %}
+
+{% block content%}
+<h1 align="center">
+    Translations
+</h1>
+{% for translation in user.translations %}
+<li class="list-group-item">Source Text - {{translation.source_text}}, Translated Text - {{translation.translated_text}}
+    <button type="button" class="close" onclick="delete_translation({{ translation.id }})">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</li>
+{% endfor %}
+<br/>
+<form method="POST">
+    <label for="Luhya">Enter Luhya Language: </label>
+    <input name="source_text" id="source_text" class="form-control" placeholder="Enter Source Text"></input>
+    <br/>
+    <label for="Luhya">Enter Swahili Language: </label>
+    <input name="translated_text" id="translated_text" class="form-control" placeholder="Enter Translated Text"></input>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Add translation</button>
+    </div>
+</form>
+
+{% endblock %}

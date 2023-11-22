@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>{% block title%}SwaLuKE-Translate{%endblock%}</title>
+ <!-- Favicons -->
+  <link rel="favicon-icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='img/apple-touch-icon.png') }}">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/aos/aos.css') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+  
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css') }}">
+  
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/boxicons/css/boxicons.min.css') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/glightbox/css/glightbox.min.css') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.css') }}">
+  <!-- Template Main CSS File -->
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+ 
+
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <h1 class="text-light"><a href="/"><span>SwaLuKE</span></a></h1>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="/">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">Kutuhusu</a></li>
+          <li><a class="nav-link scrollto" href="#services">Huduma</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Mawasiliano</a></li>
+          {% if user.is_authenticated %}
+          <li class="dropdown"><a href="#"><span>{{ user.firstname }}</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/translate">View Translation</a></li>
+              <li><a href="/dashboard">Dashboard</a></li>
+              <li><a href="/logout">Sign Out</a></li>
+            </ul>
+          </li>
+          {% else %}
+          <li class="dropdown"><a href="#"><span>User</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/sign-up">Register</a></li>
+            </ul>
+          </li>
+          <li><a class="getstarted scrollto" href="/login">Anza Nasi</a></li>
+          {% endif %}
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section - Translation ssection ======= -->
+  <section id="hero" class="d-flex align-items-center">
+
+    <div class="container">
+      <!--div class="row gy-4">
+        <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <h1>Bettter digital experience with Ninestars</h1>
+          <h2>We are team of talented designers making websites with Bootstrap</h2>
+          <div>
+            <a href="#about" class="btn-get-started scrollto">Get Started</a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img">
+          <img src="{ url_for('static', filename='images/example.jpg') }}img/hero-img.svg" class="img-fluid animated" alt="">
+        </div>
+      </div--->
+    </div>
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="row justify-content-between">
+          <div class="col-lg-5 d-flex align-items-center justify-content-center about-img">
+            <img src="{{url_for('static', filename='img/about-img.svg')}}" class="img-fluid" alt="" data-aos="zoom-in">
+          </div>
+          <div class="col-lg-6 pt-5 pt-lg-0">
+            <h3 data-aos="fade-up">Karibu kwenye SwaLuKE</h3>
+            <p data-aos="fade-up" data-aos-delay="100">
+             Tunakuletea huduma bora za tafsiri kati ya Kiswahili na Luhya. Tunakusaidia kuvuka mipaka ya lugha kwa njia rahisi na yenye ufanisi.
+            </p>
+            <div class="row">
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <i class="bx bx-receipt"></i>
+                <h4>Dhamira Yetu (Our Mission)</h4>
+                <p>Tuna lengo la kuwezesha mawasiliano na kukuza ufahamu kati ya watu wanaozungumza Kiswahili na Luhya.</p>
+              </div>
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <i class="bx bx-cube-alt"></i>
+                <h4>Maono (Vision) </h4>
+                <p>Tunakusudia kuona ulimwengu ambapo lugha inakuwa kichocheo cha umoja, ikiimarisha uhusiano na kuelewana kati ya jamii mbalimbali.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Huduma (Services)</h2>
+          <p>Tazama huduma kubwa tunazotoa</p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bxl-dribbble"></i></div>
+              <h4 class="title"><a href="">Ufanisi</a></h4>
+              <p class="description">Tunajivunia kuwa na huduma za ufasiri zenye ufanisi wa hali ya juu</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-file"></i></div>
+              <h4 class="title"><a href="">Ubora</a></h4>
+              <p class="description">Tunajivunia kutoa tafsiri zenye ubora wa hali ya juu.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-tachometer"></i></div>
+              <h4 class="title"><a href="">Huduma Binafsi</a></h4>
+              <p class="description">Tunazingatia mahitaji yako na kutoa suluhisho la kibinafsi.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="400">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-world"></i></div>
+              <h4 class="title"><a href="">Mafunzo ya Ufasiri</a></h4>
+              <p class="description">Lengo ni kuwajengea watu stadi, maarifa, na mbinu zinazohitajika ili wawe wafasiri mahiri.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Contact Us Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Wasiliana Nasi (Contact Us) </h2>
+          <p>Kama unahitaji msaada wasiliana nasi kwa kutumia taarifa hizi</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-5 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Mahali:</h4>
+                <p>Westlands, Nairobi</p>
+              </div>
+
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>Barua Pepe:</h4>
+                <p>abby.muso@gmail.com</p>
+              </div>
+
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Simu:</h4>
+                <p>+254 79498056</p>
+              </div>
+
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+            </div>
+
+          </div>
+
+          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+            <form method="post" action="/" class="php-email-form">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="name">Jina yako</label>
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group col-md-6 mt-3 mt-md-0">
+                  <label for="name">Barua Pepe</label>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <label for="name">Mada</label>
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+              </div>
+              <div class="form-group mt-3">
+                <label for="name">Ujumbe</label>
+                <textarea class="form-control" name="message" id="message" rows="10" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Ujumbe wako umefikishwa. Asanti!</div>
+              </div>
+              <div class="text-center"><button type="submit">Tuma Ujumbe</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Us Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <h4>Jiunge na Jarida Letu</h4>
+            <p>Jiunge na jarida letu kwa habari na taarifa za hivi karibuni</p>
+            <form method="post">
+              <input type="email" id="otheremail" name="otheremail"><input type="submit" value="Jisajili">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>SwaLuKE</h3>
+            <p>
+              Westlands, Nairobi <br>
+              Kenya<br><br>
+              <strong>Simu:</strong> +254 791498056<br>
+              <strong>Barua Pepe:</strong> abby.muso@gmail.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Kutuhusu</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Huduma</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Anza Nasi</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Huduma</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Ufanisi</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Ubora</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Huduma Binafsi</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Mafunzo ya Ufasiri</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Mitandao yetu ya Kijamii</h4>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container py-4">
+      <div class="copyright">
+        &copy; Copyright <strong><span>SwaLuKE</span></strong>. 2023
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{{url_for('static', filename='vendor/aos/aos.js') }}"></script>
+  <script src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{url_for('static', filename='vendor/glightbox/js/glightbox.min.js') }}"></script>
+  <script src="{{url_for('static', filename='vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+  <script src="{{url_for('static', filename='vendor/swiper/swiper-bundle.min.js') }}"></script>
+  <script src="{{url_for('static', filename='vendor/php-email-form/validate.js') }}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+
+</html>
