@@ -1,0 +1,6 @@
+transformers
+torch
+flask
+flask_login
+json
+sqlalchemy.sql
