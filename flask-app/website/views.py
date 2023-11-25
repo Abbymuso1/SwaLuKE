@@ -1,15 +1,22 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
 from .models import Note, Translation, Feedback
-from .model_handler import translate_text
+#from .model_handler import translate_text
+from transformers import pipeline, AutoModelForSeq2SeqLM, AutoTokenizer
 from . import db
 import json
 
 views = Blueprint('views', __name__)
 
+model_name = "AbbyMuso1/model_trans_lu_sw_3"  # Replace with your model name
+model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+translator = pipeline(task="translation", model=model, tokenizer=tokenizer)
+
+
 #define views
 @views.route('/', methods=['GET', 'POST']) #main page of the website
-# @login_required
+#@login_required
 def home():
     if request.method == 'POST':
         name = request.form.get('name')
@@ -24,7 +31,7 @@ def home():
             db.session.commit()
             flash('Feedback Added!', category='success')
 
-    return render_template("newbase.html")
+    return render_template("newbase.html", user=current_user )
 
 
 @views.route('/delete-note', methods= ['POST'])
@@ -69,14 +76,38 @@ def delete_translation():
     return jsonify({})
 
 
-# ... (previous code)
+@views.route('/dashboard', methods=['GET', 'POST']) #main page of the website
+@login_required
+def dashboard():
+    return render_template("userdashboard.html", user=current_user)
 
-# Define a route for handling translation
-@views.route('/translate', methods=['GET','POST'])
+@views.route('/addtranslation', methods=['GET', 'POST']) #main page of the website
+@login_required
+def addtranslation():
+    return render_template("add_translation.html", user=current_user)
+
+@views.route('/viewaddtranslation', methods=['GET', 'POST']) #main page of the website
+@login_required
+def viewaddtranslation():
+    return render_template("view_add_translation.html", user=current_user)
+
+@views.route('/userprofile', methods=['GET', 'POST']) #main page of the website
+@login_required
+def userprofile():
+    return render_template("user_profile.html", user=current_user)
+
+@views.route('/translation', methods=['GET', 'POST']) #main page of the website
+@login_required
+def translation():
+    return render_template("translation.html", user=current_user)
+
+@views.route('/translate', methods=['GET', 'POST'])
 def translate():
-    if request.method == 'POST':
-        input_text = request.form['input_text']
-        translated_text = translate_text(input_text)
+    data = request.form
+    source_text = data['source_text']
+    target_language = data['target_language']
 
-        return render_template('view_translation.html', input_text=input_text, translated_text=translated_text)
+    # Translate text using your Hugging Face model
+    translation = translator(source_text, target_language=target_language)
 
+    return render_template('index.html', source_text=source_text, target_language=target_language, translation=translation[0]['translation_text'])
