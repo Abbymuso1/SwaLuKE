@@ -16,23 +16,21 @@ Follow these simple steps to get started with SwaluKE:
 
 Clone the Repository:
 
-bash
-Copy code
-
 ```
-git clone https://github.com/your-username/SwaluKE.git
+git clone https://github.com/Abbymuso1/SwaluKE.git
 cd SwaluKE
 ```
 Install Dependencies:
 
-bash
-Copy code
+```
 pip install -r requirements.txt
+```
 Run the Application:
 
-bash
-Copy code
+```
 python app.py
+```
+
 Access the translation service by visiting http://127.0.0.1:5000/ in your web browser.
 
 Contributing
