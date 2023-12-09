@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Note, Translation, Feedback
+from .models import Note, Translation, User_Translation
 #from .model_handler import translate_text
 from transformers import pipeline, AutoModelForSeq2SeqLM, AutoTokenizer
 from . import db
@@ -11,7 +11,6 @@ views = Blueprint('views', __name__)
 model_name = "AbbyMuso1/model_trans_lu_sw_3"  # Replace with your model name
 model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-translator = pipeline(task="translation", model=model, tokenizer=tokenizer)
 
 
 #define views
@@ -19,19 +18,31 @@ translator = pipeline(task="translation", model=model, tokenizer=tokenizer)
 #@login_required
 def home():
     if request.method == 'POST':
-        name = request.form.get('name')
-        email = request.form.get('email')
-        subject = request.form.get('subject')
-        message = request.form.get('message')
-        if len(message) < 1:
-            flash('Input text is too short!', category='error')
-        else:
-            new_feedback = Feedback(name=name, email=email, subject=subject, message=message)
-            db.session.add(new_feedback)
+        original_text = request.form.get('original_text')
+        inputs = tokenizer.encode("translate Luhya to Swahili: " + original_text, return_tensors="pt")
+        translation = model.generate(inputs, max_length=90, num_return_sequences=1)
+        translated_text = tokenizer.decode(translation[0], skip_special_tokens=True)
+        
+        if translated_text:
+            new_translation = Translation(original_text=original_text, translated_text=translated_text)
+            db.session.add(new_translation)
             db.session.commit()
-            flash('Feedback Added!', category='success')
+            flash('Translation Added!', category='success')
+            render_template("newbase.html", user=current_user,new_translation=new_translation)
+        
 
-    return render_template("newbase.html", user=current_user )
+    return render_template("newbase.html", user=current_user)
+
+
+@views.route('/translate', methods=['GET', 'POST'])
+def translate():
+    original_text = "si ndareta"
+    inputs = tokenizer.encode("translate Luhya to Swahili: " + original_text, return_tensors="pt")
+    translation = model.generate(inputs, max_length=90, num_return_sequences=1)
+    translated_text = tokenizer.decode(translation[0], skip_special_tokens=True)
+    
+    data = Translation.query.all()
+    return render_template('index.html', original_text=original_text, translated_text=translated_text, data=data)
 
 
 @views.route('/delete-note', methods= ['POST'])
@@ -79,7 +90,7 @@ def delete_translation():
 @views.route('/dashboard', methods=['GET', 'POST']) #main page of the website
 @login_required
 def dashboard():
-    return render_template("userdashboard.html", user=current_user)
+    return render_template("userdashboard.html", user=current_user, usertrans=User_Translation)
 
 @views.route('/addtranslation', methods=['GET', 'POST']) #main page of the website
 @login_required
@@ -101,13 +112,4 @@ def userprofile():
 def translation():
     return render_template("translation.html", user=current_user)
 
-@views.route('/translate', methods=['GET', 'POST'])
-def translate():
-    data = request.form
-    source_text = data['source_text']
-    target_language = data['target_language']
-
-    # Translate text using your Hugging Face model
-    translation = translator(source_text, target_language=target_language)
-
-    return render_template('index.html', source_text=source_text, target_language=target_language, translation=translation[0]['translation_text'])
+    

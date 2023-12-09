@@ -18,14 +18,20 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(150))
     firstname = db.Column(db.String(150))
     notes = db.relationship('Note') #relationship is in caps
-    translations = db.relationship('Translation')
+    user_translations = db.relationship('User_Translation')
 
-class Translation(db.Model):
+class User_Translation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    source_text = db.Column(db.String(10000))
+    original_text = db.Column(db.String(10000))
     translated_text = db.Column(db.String(10000))
     date = db.Column(db.DateTime(timezone=True), default=func.now()) #stores real time data
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+class Translation(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    original_text = db.Column(db.String(10000))
+    translated_text = db.Column(db.String(10000))
+    date = db.Column(db.DateTime(timezone=True), default=func.now()) #stores real time data
 
 class Feedback(db.Model):
     id = db.Column(db.Integer, primary_key=True)

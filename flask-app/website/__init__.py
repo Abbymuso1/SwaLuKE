@@ -37,7 +37,5 @@ def create_app():
 
 def create_database(app):
      with app.app_context():
-        # Now, you can safely perform database operations
-      #  db.drop_all()
-       db.create_all()
+        db.create_all()
 

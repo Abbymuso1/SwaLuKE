@@ -134,11 +134,23 @@
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
     <h4 class="h4 mb-0 text-gray-800">History of Translations</h4>
-   
 </div>
 
 <div class="row">
 <!--Table-->
+<table>
+    <th>Original Text</th>
+    <th>Translation Text</th>
+
+    {% if user.id == usertrans.id %}
+    {% for usert in usertrans%}
+    <tr>{{ usert.original_text}}</tr>
+    {% endfor %}
+    {% for usert in usertrans%}
+    <tr>{{ usert.original_text}}</tr>
+    {% endfor %}
+    {% endif %}
+</table>
 </div>
 
 

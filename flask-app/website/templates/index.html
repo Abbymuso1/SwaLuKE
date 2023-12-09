@@ -9,11 +9,12 @@
     <h1>Translation App</h1>
     <form action="/translate" method="post">
         <label for="source_text">Source Text:</label>
-        <input type="text" id="source_text" name="source_text" required><br>
-
-        <label for="target_language">Target Language:</label>
-        <input type="text" id="target_language" name="target_language" required><br>
-
+        <input type="text" id="original_text" name="original_text" placeholder="{{ original_text }}" required><br>
+        <p>
+            {% if translated_text %}
+            {{ translated_text }}
+            {% endif %}
+        </p>
         <button type="submit">Translate</button>
     </form>
 
@@ -21,5 +22,25 @@
     <h2>Translation:</h2>
     <p>{{ translation }}</p>
     {% endif %}
+
+
+    <table>
+        <tr>
+        <th>Original Text</th>
+        <th>Translation Text</th>
+         </tr>
+        {% for d in data%}
+        <tr>
+            <td>{{ d.original_text}}</td>
+            <td>{{ d.translated_text}}</td>
+            <td>
+                <a href="{{ url_for('delete_row', row_id=d.id) }}">Delete</a>
+            </td>
+        </tr>
+      
+        {% endfor %}
+      
+    </table>
+
 </body>
 </html>

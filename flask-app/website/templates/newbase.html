@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='vendor/glightbox/css/glightbox.min.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.css') }}">
   <!-- Template Main CSS File -->
-  
+
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <link rel="stylesheet" href="static/translation/styles.css">
 
@@ -39,9 +39,9 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="/">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">Kutuhusu</a></li>
-          <li><a class="nav-link scrollto" href="#services">Huduma</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Mawasiliano</a></li>
+          <li><a class="nav-link scrollto" href="#about">About Us</a></li>
+          <li><a class="nav-link scrollto" href="#services">Services</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           {% if user.is_authenticated %}
           <li class="dropdown"><a href="#"><span>{{ user.firstname }}</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -56,7 +56,7 @@
               <li><a href="/sign-up">Register</a></li>
             </ul>
           </li>
-          <li><a class="getstarted scrollto" href="/login">Anza Nasi</a></li>
+          <li><a class="getstarted scrollto" href="/login">Start with us</a></li>
           {% endif %}
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -69,33 +69,37 @@
   <section id="hero" class="d-flex align-items-center">
 
     <div class="trans_container row gap-4">
-      
+
       <div class="col-4 translate_container">
         <div class="translate_wrapper">
-          <div class="text-input">
-            <textarea spellcheck="false" class="from-text" placeholder="Enter text"></textarea>
-            <textarea spellcheck="false" readonly disabled class="to-text" placeholder="Translation"></textarea>
-          </div>
-          <ul class="controls">
-            <li class="row from lang_list">
-              <div class="icons">
-              </div>
-              <select></select>
-            </li>
-            <li class="exchange lang_list">
-              <i class="bi bi-arrow-left-right"></i>
-            </li>
+          <form method="post">
+            <div class="text-input">
+              <textarea spellcheck="false" class="from-text" name="original_text" id="original_text" placeholder="Enter text"></textarea>
+              <textarea spellcheck="false" readonly disabled class="to-text" placeholder="Translation">
+                {% if translated_text %}
+                {{ new_translation.translated_text }}
+                {% endif %}
+              </textarea>
+            </div>
+            <ul class="controls">
+              <li class="row from lang_list">
+                <div class="icons">
+                </div>
+                <select></select>
+              </li>
+              <li class="exchange lang_list">
+                <i class="bi bi-arrow-left-right"></i>
+              </li>
 
-            <li class="row to lang_list">
-              <select></select>
-              <div class="icons">
-
-              </div>
-            </li>
-          </ul>
+              <li class="row to lang_list">
+                <select></select>
+                <div class="icons">
+                </div>
+              </li>
+            </ul>
         </div>
-
-        <button>Translate Text</button>
+        <button type="submit">Translate Text</button>
+        </form>
       </div>
       <div class="col-2">
         <div class="d-flex align-items-center justify-content-center about-img">
@@ -117,23 +121,22 @@
             <img src="{{url_for('static', filename='img/about-img.svg')}}" class="img-fluid" alt="" data-aos="zoom-in">
           </div>
           <div class="col-lg-6 pt-5 pt-lg-0">
-            <h3 data-aos="fade-up">Karibu kwenye SwaLuKE</h3>
+            <h3 data-aos="fade-up">Welcome to SwaLuKE</h3>
             <p data-aos="fade-up" data-aos-delay="100">
-              Tunakuletea huduma bora za tafsiri kati ya Kiswahili na Luhya. Tunakusaidia kuvuka mipaka ya lugha kwa
-              njia rahisi na yenye ufanisi.
+              We bring you excellent translation services between Kiswahili and Luhya. 
+              We assist you in crossing language boundaries through a simple and efficient way.
             </p>
             <div class="row">
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
                 <i class="bx bx-receipt"></i>
-                <h4>Dhamira Yetu (Our Mission)</h4>
-                <p>Tuna lengo la kuwezesha mawasiliano na kukuza ufahamu kati ya watu wanaozungumza Kiswahili na Luhya.
+                <h4>Our Mission</h4>
+                <p>We aim to facilitate communication and promote understanding between people who speak Kiswahili and Luhya.
                 </p>
               </div>
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
                 <i class="bx bx-cube-alt"></i>
-                <h4>Maono (Vision) </h4>
-                <p>Tunakusudia kuona ulimwengu ambapo lugha inakuwa kichocheo cha umoja, ikiimarisha uhusiano na
-                  kuelewana kati ya jamii mbalimbali.</p>
+                <h4>Vision</h4>
+                <p>We envision a world where language becomes a catalyst for unity, strengthening relationships and understanding among diverse communities.</p>
               </div>
             </div>
           </div>
@@ -229,7 +232,7 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-            <form method="post" action="/" class="php-email-form">
+            <form class="php-email-form">
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="name">Jina yako</label>
