@@ -16,16 +16,12 @@ def login():
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, password):
-                flash('Logged in Successfully', category='success')
-                login_user(user, remember=True) #tore the flask session
-
+                login_user(user, remember=True)
                 return redirect(url_for('views.home'))
-            else:
-                flash('Incorrect password, try again!', category='error')
         else:
             flash('Email does not exist', category='error')
 
-    return render_template("newlogin.html", user=current_user)
+    return render_template("login.html", user=current_user)
 
 @auth.route('/logout')
 @login_required
@@ -58,8 +54,6 @@ def sign_up():
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
-            flash('Account is created', category='success')
             return redirect(url_for('views.home'))
-            #add user to the database
     
-    return render_template("newregister.html", user=current_user)
+    return render_template("register.html", user=current_user)

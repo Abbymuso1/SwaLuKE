@@ -1,0 +1,27 @@
+{% extends "base_dash.html" %} {% block title%}Add Translation{% endblock %}
+{% block content%}
+
+<form action="/adduser" method="POST">
+    <h3 align="center">Add User</h3>
+    <div class="form-group">
+        <label for="name">Username</label>
+        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter username">
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email address">
+    </div>
+    <div class="form-group">
+        <label for="pass">Password</label>
+        <input type="password" class="form-control" id="password1" name="password1" placeholder="Enter password">
+    </div>
+    <br />
+    
+    <div class="text-center mb-4">
+        <button type="submit" class="btn btn-primary">Add User</button>
+    </div>
+  
+</form>
+
+
+{% endblock %}

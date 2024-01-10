@@ -1,6 +1,6 @@
-transformers
-torch
 flask
 flask_login
+transformers
+torch
 json
 sqlalchemy.sql

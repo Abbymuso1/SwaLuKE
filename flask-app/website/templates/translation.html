@@ -1,32 +1,44 @@
-{% extends "base_translation.html" %} {% block title%}Translation{% endblock %}
-{% block content%}
- <div class="translate_container">
-    <div class="translate_wrapper">
-        <div class="text-input">
-            <textarea spellcheck="false" class="from-text" placeholder="Enter text"></textarea>
-            <textarea spellcheck="false" readonly disabled class="to-text"
-            placeholder="Translation"></textarea>
-        </div>
-        <ul class="controls">
-            <li class="row from lang_list">
-                <div class="icons">
-                </div>
-                <select></select>
-            </li>
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en" dir="ltr">
 
-            <li class="exchange lang_list">
-                <i class="fas fa-exchange-alt"></i>
-            </li>
-            <li class="row to lang_list">
-                <select></select>
-                <div class="icons">
-                    
+<head>
+    <meta charset="utf-8">
+    <title>Translation</title>
+    <link rel="stylesheet" href="static/translationfiles/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+
+<body>
+    <div class="container">
+        <form action="/translationpage" method="POST">
+            <div class="wrapper">
+                <div class="text-input">
+                    <textarea spellcheck="false" class="from-text" name="original_text" id="original_text" placeholder="Enter text">{{ original_text if original_text else ' ' }}</textarea>
+                    <textarea spellcheck="false" readonly disabled class="to-text" name="translated_text" id="translated_text" placeholder="Translation">{{ translated_text if translated_text else ' ' }}</textarea>
                 </div>
-            </li>
-        </ul>
+                <ul class="controls">
+                    <li class="row from">
+                        <div class="icons">
+                        </div>
+                        <select>
+                            <option>Luhya</option></select>
+                    </li>
+
+                    <li class="exchange"><i class="fas fa-exchange-alt"></i></li>
+
+                    <li class="row to">
+                        <select><option>Swahili</option></select>
+                        <div class="icons"> 
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <button type="submit">Translate Text</button>
+        </form>
     </div>
 
-    <button>Translate Text</button>
- </div>   
+</body>
 
- {% endblock %}
+</html>

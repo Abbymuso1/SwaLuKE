@@ -21,9 +21,11 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='vendor/glightbox/css/glightbox.min.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.css') }}">
   <!-- Template Main CSS File -->
+  <link rel="stylesheet" href="static/translationfiles/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <link rel="stylesheet" href="static/translation/styles.css">
+
 
 </head>
 
@@ -67,40 +69,40 @@
 
   <!-- ======= Hero Section - Translation ssection ======= -->
   <section id="hero" class="d-flex align-items-center">
-
-    <div class="trans_container row gap-4">
-
-      <div class="col-4 translate_container">
-        <div class="translate_wrapper">
-          <form method="post">
+    <div class="container-bfr">
+      <div class="translation-container">
+        <form action="/translationpage" method="POST">
+          <div class="wrapper">
             <div class="text-input">
-              <textarea spellcheck="false" class="from-text" name="original_text" id="original_text" placeholder="Enter text"></textarea>
-              <textarea spellcheck="false" readonly disabled class="to-text" placeholder="Translation">
-                {% if translated_text %}
-                {{ new_translation.translated_text }}
-                {% endif %}
-              </textarea>
+              <textarea spellcheck="false" class="from-text" name="original_text" id="original_text"
+                placeholder="Enter text">{{ original_text if original_text else ' ' }}</textarea>
+              <textarea spellcheck="false" readonly disabled class="to-text" name="translated_text" id="translated_text"
+                placeholder="Translation">{{ translated_text if translated_text else ' ' }}</textarea>
             </div>
             <ul class="controls">
-              <li class="row from lang_list">
+              <li class="row from">
                 <div class="icons">
                 </div>
-                <select></select>
-              </li>
-              <li class="exchange lang_list">
-                <i class="bi bi-arrow-left-right"></i>
+                <select>
+                  <option>Luhya</option>
+                </select>
               </li>
 
-              <li class="row to lang_list">
-                <select></select>
+              <li class="exchange"><i class="fas fa-exchange-alt"></i></li>
+
+              <li class="row to">
+                <select>
+                  <option>Swahili</option>
+                </select>
                 <div class="icons">
                 </div>
               </li>
             </ul>
-        </div>
-        <button type="submit">Translate Text</button>
+          </div>
+          <button type="submit">Translate Text</button>
         </form>
       </div>
+
       <div class="col-2">
         <div class="d-flex align-items-center justify-content-center about-img">
           <img src="{{url_for('static', filename='img/hero-img.svg')}}" class="img-fluid" alt="" data-aos="zoom-in">
@@ -123,20 +125,22 @@
           <div class="col-lg-6 pt-5 pt-lg-0">
             <h3 data-aos="fade-up">Welcome to SwaLuKE</h3>
             <p data-aos="fade-up" data-aos-delay="100">
-              We bring you excellent translation services between Kiswahili and Luhya. 
+              We bring you excellent translation services between Kiswahili and Luhya.
               We assist you in crossing language boundaries through a simple and efficient way.
             </p>
             <div class="row">
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
                 <i class="bx bx-receipt"></i>
                 <h4>Our Mission</h4>
-                <p>We aim to facilitate communication and promote understanding between people who speak Kiswahili and Luhya.
+                <p>We aim to facilitate communication and promote understanding between people who speak Kiswahili and
+                  Luhya.
                 </p>
               </div>
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
                 <i class="bx bx-cube-alt"></i>
                 <h4>Vision</h4>
-                <p>We envision a world where language becomes a catalyst for unity, strengthening relationships and understanding among diverse communities.</p>
+                <p>We envision a world where language becomes a catalyst for unity, strengthening relationships and
+                  understanding among diverse communities.</p>
               </div>
             </div>
           </div>
@@ -150,41 +154,41 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Huduma (Services)</h2>
-          <p>Tazama huduma kubwa tunazotoa</p>
+          <h2>Services</h2>
+          <p>See the great services we offer</p>
         </div>
 
         <div class="row">
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4 class="title"><a href="">Ufanisi</a></h4>
-              <p class="description">Tunajivunia kuwa na huduma za ufasiri zenye ufanisi wa hali ya juu</p>
+              <h4 class="title"><a href="">Efficiency</a></h4>
+              <p class="description">We pride ourselves on having highly effective interpretation services</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-file"></i></div>
-              <h4 class="title"><a href="">Ubora</a></h4>
-              <p class="description">Tunajivunia kutoa tafsiri zenye ubora wa hali ya juu.</p>
+              <h4 class="title"><a href="">Quality</a></h4>
+              <p class="description">We pride ourselves on providing high-quality translations.</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4 class="title"><a href="">Huduma Binafsi</a></h4>
-              <p class="description">Tunazingatia mahitaji yako na kutoa suluhisho la kibinafsi.</p>
+              <h4 class="title"><a href="">Personalized Service</a></h4>
+              <p class="description">We prioritize your needs and provide individualized solutions.</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="400">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-world"></i></div>
-              <h4 class="title"><a href="">Mafunzo ya Ufasiri</a></h4>
-              <p class="description">Lengo ni kuwajengea watu stadi, maarifa, na mbinu zinazohitajika ili wawe wafasiri
-                mahiri.</p>
+              <h4 class="title"><a href="">Interpreter Training</a></h4>
+              <p class="description">The goal is to equip individuals with the skills, knowledge, and techniques needed
+                to become proficient interpreters.</p>
             </div>
           </div>
 
@@ -198,8 +202,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Wasiliana Nasi (Contact Us) </h2>
-          <p>Kama unahitaji msaada wasiliana nasi kwa kutumia taarifa hizi</p>
+          <h2>Contact Us</h2>
+          <p>If you need assistance, contact us using this information.</p>
         </div>
 
         <div class="row">
@@ -208,19 +212,19 @@
             <div class="info">
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
-                <h4>Mahali:</h4>
+                <h4>Location:</h4>
                 <p>Westlands, Nairobi</p>
               </div>
 
               <div class="email">
                 <i class="bi bi-envelope"></i>
-                <h4>Barua Pepe:</h4>
+                <h4>Email:</h4>
                 <p>abby.muso@gmail.com</p>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
-                <h4>Simu:</h4>
+                <h4>Phone:</h4>
                 <p>+254 79498056</p>
               </div>
 
@@ -232,31 +236,31 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-            <form class="php-email-form">
+            <form action="/contactform" class="php-email-form1" method="POST">
               <div class="row">
                 <div class="form-group col-md-6">
-                  <label for="name">Jina yako</label>
+                  <label for="name">Name</label>
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
                 </div>
                 <div class="form-group col-md-6 mt-3 mt-md-0">
-                  <label for="name">Barua Pepe</label>
+                  <label for="name">Email Address</label>
                   <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
                 </div>
               </div>
               <div class="form-group mt-3">
-                <label for="name">Mada</label>
+                <label for="name">Subject</label>
                 <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
               </div>
               <div class="form-group mt-3">
-                <label for="name">Ujumbe</label>
+                <label for="name">Message</label>
                 <textarea class="form-control" name="message" id="message" rows="10" required></textarea>
               </div>
               <div class="my-3">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
-                <div class="sent-message">Ujumbe wako umefikishwa. Asanti!</div>
+                <div class="sent-message">Message received. Thank you!</div>
               </div>
-              <div class="text-center"><button type="submit">Tuma Ujumbe</button></div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
           </div>
 
@@ -274,10 +278,11 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6">
-            <h4>Jiunge na Jarida Letu</h4>
-            <p>Jiunge na jarida letu kwa habari na taarifa za hivi karibuni</p>
-            <form method="post">
-              <input type="email" id="otheremail" name="otheremail"><input type="submit" value="Jisajili">
+            <h4>Join our newsletter.</h4>
+            <p>Join our newsletter for the latest news and updates.</p>
+            <form action="/subscribeform" method="POST">
+              <input type="email" id="other_email" name="other_email">
+              <input type="submit" value="Register">
             </form>
           </div>
         </div>
@@ -293,8 +298,8 @@
             <p>
               Westlands, Nairobi <br>
               Kenya<br><br>
-              <strong>Simu:</strong> +254 791498056<br>
-              <strong>Barua Pepe:</strong> abby.muso@gmail.com<br>
+              <strong>Phone:</strong> +254 791498056<br>
+              <strong>Email:</strong> abby.muso@gmail.com<br>
             </p>
           </div>
 
@@ -302,24 +307,24 @@
             <h4>Useful Links</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Kutuhusu</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Huduma</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Anza Nasi</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About Us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Start with Us</a></li>
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Huduma</h4>
+            <h4>Services</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Ufanisi</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Ubora</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Huduma Binafsi</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Mafunzo ya Ufasiri</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Efficiency</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Quality</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Personalised Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Interpreter training</a></li>
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Mitandao yetu ya Kijamii</h4>
+            <h4>Our Social Links</h4>
             <div class="social-links mt-3">
               <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
               <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>

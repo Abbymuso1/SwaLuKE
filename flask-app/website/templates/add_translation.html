@@ -1,19 +1,22 @@
 {% extends "base_dash.html" %} {% block title%}Add Translation{% endblock %}
 {% block content%}
 
-<form method="POST">
-    <h3 align="center">Log In</h3>
+<form action="/addtranslation" method="POST">
+    <h3 align="center">Add Translation</h3>
     <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email Address">
+        <label for="swahili">Swahili</label>
+        <input type="text" class="form-control" id="original_text" name="original_text" placeholder="Enter Swahili Text">
     </div>
     <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+        <label for="luhya">Luhya</label>
+        <input type="text" class="form-control" id="translated_text" name="translated_text" placeholder="Enter Luhya translation">
     </div>
     <br />
-    <button type="submit" class="btn btn-primary">Login</button>
-
+    
+    <div class="text-center mb-4">
+        <button type="submit" class="btn btn-primary">Add Translation</button>
+    </div>
+  
 </form>
 
 
